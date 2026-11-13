@@ -1,24 +1,27 @@
-import { useState } from 'react'
+import { profile } from './profile.ts'
+import Hero from './components/Hero.tsx'
+import About from './components/About.tsx'
+import Skills from './components/Skills.tsx'
+import Projects from './components/Projects.tsx'
+import Contact from './components/Contact.tsx'
 
-function Button() {
-  // let clicked = 0;
-
-  const[clicked, setClicked] = useState(0);
-
-  const handleClick = () => {
-    console.log("clicked");
-    // clicked++;
-    // setClicked(clicked +1);
-
-    setClicked((prev) => prev + 1);
-    setClicked((prev) => prev + 1);
-  };
-
-  return <button onClick={handleClick}>클릭 {clicked}번</button>;
-}
+const currentYear = new Date().getFullYear()
 
 function App() {
-  return <div>안녕 리액트 <Button /><Button /></div>;
+  return (
+    <div className="page">
+      <Hero name={profile.name} tagline={profile.tagline} />
+      <main>
+        <About paragraphs={profile.about} facts={profile.facts} />
+        <Skills groups={profile.skills} />
+        <Projects projects={profile.projects} />
+        <Contact contact={profile.contact} />
+      </main>
+      <footer className="footer">
+        © {currentYear} {profile.name}
+      </footer>
+    </div>
+  )
 }
 
 export default App
